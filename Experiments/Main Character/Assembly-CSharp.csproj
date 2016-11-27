@@ -101,15 +101,15 @@
      <Compile Include="Assets\Main Character\Effects\ImageEffects\Scripts\Twirl.cs" />
      <Compile Include="Assets\Main Character\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
      <Compile Include="Assets\Main Character\Effects\ImageEffects\Scripts\Vortex.cs" />
-     <Compile Include="Assets\Mocap Library\demo\scripts\demo.cs" />
-     <Compile Include="Assets\Mocap Library\demo\scripts\smoothFollow.cs" />
+     <Compile Include="Assets\Mocap Libraries\demo\scripts\demo.cs" />
+     <Compile Include="Assets\Mocap Libraries\demo\scripts\smoothFollow.cs" />
      <None Include="Assets\Main Character\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Main Character\Effects\ToonShading\Shaders\ToonBasic.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
-     <None Include="Assets\Mocap Library\READTHIS.txt" />
+     <None Include="Assets\Mocap Libraries\READTHIS.txt" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
@@ -129,7 +129,7 @@
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\ContrastComposite.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
-     <None Include="Assets\Mocap Library\mocap animations\cmu-mocap-index-text.txt" />
+     <None Include="Assets\Mocap Libraries\mocap animations\cmu-mocap-index-text.txt" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\frag_ao.cginc" />
      <None Include="Assets\Main Character\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
@@ -159,6 +159,7 @@
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\MotionBlurClear.shader" />
+     <None Include="Assets\Mocap Libraries\Animations\_CompleteAnimationList.txt" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\ColorCorrectionEffect.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\GrayscaleEffect.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\SepiaToneEffect.shader" />
