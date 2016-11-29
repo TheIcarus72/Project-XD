@@ -3,11 +3,11 @@ using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class MainCharacterVariables : MonoBehaviour {
-	int xAttack = 0;
+	private int xAttack = 0;
+	private Animator animator;
 	public bool hasWeapon = false;
 	public bool attack = false;
 
-	private Animator animator;
 
 	void Awake () {
 		animator = GetComponent<Animator>();
