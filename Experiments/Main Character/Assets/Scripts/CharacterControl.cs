@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class CharacterControl : MonoBehaviour {
@@ -16,26 +16,34 @@ public class CharacterControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (Input.GetKey (KeyCode.LeftShift)) {
-			v = Input.GetAxis ("Vertical") / 4;				// setup v variables as our vertical input axis
+		if (Input.GetKey (KeyCode.C)) {
+			animator.SetBool ("Crouch", true);				// Crouch is on
+			v = Input.GetAxis ("Vertical"); 				// setup v variables as our vertical input axis
+			h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
+			animator.SetFloat("Speed", v);					// set our animator's float parameter 'Speed' equal to the vertical input axis				
+			animator.SetFloat("Direction", h); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
 		} else {
-			v = Input.GetAxis ("Vertical");
-		}
-		h = Input.GetAxis("Horizontal");				// setup h variable as our horizontal input axis
-		if (vCurrent > v) {
-			vCurrent -= walkRunTransitionSpeed * Time.deltaTime;
-			if (vCurrent < v) {
-				vCurrent = v;
+			animator.SetBool ("Crouch", false);				// Crouch is off
+			if (Input.GetKey (KeyCode.LeftShift)) {
+				v = Input.GetAxis ("Vertical") / 4;			// setup v variables as our vertical input axis
+			} else {
+				v = Input.GetAxis ("Vertical");
 			}
-		} else if (vCurrent < v) {
-			vCurrent += walkRunTransitionSpeed * Time.deltaTime;
+			h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
 			if (vCurrent > v) {
-				vCurrent = v;
+				vCurrent -= walkRunTransitionSpeed * Time.deltaTime;
+				if (vCurrent < v) {
+					vCurrent = v;
+				}
+			} else if (vCurrent < v) {
+				vCurrent += walkRunTransitionSpeed * Time.deltaTime;
+				if (vCurrent > v) {
+					vCurrent = v;
+				}
 			}
+			animator.SetFloat("Speed", vCurrent);			// set our animator's float parameter 'Speed' equal to the vertical input axis				
+			animator.SetFloat("Direction", h); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
 		}
-		animator.SetFloat("Speed", vCurrent);							// set our animator's float parameter 'Speed' equal to the vertical input axis				
-		animator.SetFloat("Direction", h); 						// set our animator's float parameter 'Direction' equal to the horizontal input axis
 		Debug.Log(v + " " + vCurrent);
 	}
 }
