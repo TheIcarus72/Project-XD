@@ -7,6 +7,7 @@ TagManager:
   - GrabWeaponTest
   - Environment
   - PlayerMovementRestriction
+  - Sword
   layers:
   - Default
   - TransparentFX

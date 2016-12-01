@@ -7,6 +7,8 @@ public class MainCharacterVariables : MonoBehaviour {
 	private Animator animator;
 	public bool hasWeapon = false;
 	public bool attack = false;
+	public GameObject Sword;
+	public GameObject WeaponEquipTest;
 
 
 	void Awake () {
@@ -14,9 +16,12 @@ public class MainCharacterVariables : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider col) {
+		Debug.Log("Test");
 		if( col.gameObject.tag == "GrabWeaponTest" )
 		{
 			hasWeapon = true;
+			Sword.SetActive(true);
+			WeaponEquipTest.SetActive(false);
 		}
 	}
 
