@@ -5,7 +5,9 @@ using UnityStandardAssets.CrossPlatformInput;
 public class MainCharacterVariables : MonoBehaviour {
 	private int xAttack = 0;
 	private Animator animator;
-	public bool hasWeapon = false;
+	public bool hasSword = false;
+	public float displaySwordDelay = 0.0f;
+	float hasSwordX = 0.0f;
 	public bool attack = false;
 	public GameObject Sword;
 	public GameObject WeaponEquipTest;
@@ -16,16 +18,22 @@ public class MainCharacterVariables : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider col) {
-		Debug.Log("Test");
 		if( col.gameObject.tag == "GrabWeaponTest" )
 		{
-			hasWeapon = true;
-			Sword.SetActive(true);
+			hasSwordX = displaySwordDelay;
+			hasSword = true;
+			animator.SetBool("HasSword",true);
 			WeaponEquipTest.SetActive(false);
 		}
 	}
 
 	void Update () {
+		if (hasSwordX > 0 && hasSword) {
+			hasSwordX -= 1 * Time.deltaTime;
+		} else if (hasSwordX <= 0 && hasSword) {
+			Sword.SetActive(true);
+			hasSwordX = 0.0f;
+		}
 		if(attack == true)
 		{
 			if (xAttack < 60) {
@@ -37,11 +45,10 @@ public class MainCharacterVariables : MonoBehaviour {
 			}
 				
 		}
-		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasWeapon == true)
+		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasSword == true)
 		{
 			attack = true;
 			animator.SetBool ("Attack",true);
-			Debug.Log("Attack");
 		}
 	}
 }
