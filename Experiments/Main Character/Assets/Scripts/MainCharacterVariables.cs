@@ -3,13 +3,15 @@ using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class MainCharacterVariables : MonoBehaviour {
+	
 	private int xAttack = 0;
 	private Animator animator;
 	public bool hasSword = false;
 	public float displaySwordDelay = 0.0f;
 	float hasSwordX = 0.0f;
-	public bool attack = false;
+	static public bool attack = false;
 	public GameObject Sword;
+	static public float swordDamage = 10.0f;
 	public GameObject WeaponEquipTest;
 
 

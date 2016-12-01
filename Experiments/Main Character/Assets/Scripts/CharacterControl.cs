@@ -143,7 +143,7 @@ public class CharacterControl : MonoBehaviour {
 			if (col.gameObject.tag == "Environment" && !Jump) {
 				Grounded = true;
 				animator.SetBool ("Grounded", true);
-			} else {
+			} else if (col.gameObject.tag == "Environment" && Jump) {
 				Grounded = false;
 				animator.SetBool ("Grounded", false);
 				lastJumpX = 0.5f;
