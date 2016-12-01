@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GrabWeaponTest
   - Environment
+  - PlayerMovementRestriction
   layers:
   - Default
   - TransparentFX

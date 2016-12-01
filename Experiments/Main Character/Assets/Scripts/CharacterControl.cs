@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class CharacterControl : MonoBehaviour {
+	static public bool restrictForward = false;
+	static public bool restrictBackward = false;
+	static public bool restrictLeft = false;
+	static public bool restrictRight = false;
+
 	public GameObject cameraPivot;
 	public float walkRunTransitionSpeed = 1.0f;
 	public float jumpPower = 1.0f;
@@ -24,50 +29,45 @@ public class CharacterControl : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 	}
 	void FixedUpdate () {
-		if(Grounded && !Jump && !InJump) {
-			rb.AddForce(Physics.gravity * rb.mass);
+		if (Grounded && !Jump && !InJump) {
+			rb.AddForce (Physics.gravity * rb.mass);
 		}
-		if(Crouched == true && cameraCrouched == false) {
+		if (Crouched == true && cameraCrouched == false) {
 			Vector3 cameraPivotPos = cameraPivot.transform.position;
-			cameraPivot.transform.position = new Vector3(cameraPivotPos.x,cameraPivotPos.y - 0.5f,cameraPivotPos.z);
+			cameraPivot.transform.position = new Vector3 (cameraPivotPos.x, cameraPivotPos.y - 0.5f, cameraPivotPos.z);
 			cameraCrouched = true;
 		}
-		if(Crouched == false && cameraCrouched == true) {
+		if (Crouched == false && cameraCrouched == true) {
 			Vector3 cameraPivotPos = cameraPivot.transform.position;
-			cameraPivot.transform.position = new Vector3(cameraPivotPos.x,cameraPivotPos.y + 0.5f,cameraPivotPos.z);
+			cameraPivot.transform.position = new Vector3 (cameraPivotPos.x, cameraPivotPos.y + 0.5f, cameraPivotPos.z);
 			cameraCrouched = false;
 		}
-		if(!InJump && !Grounded)
-		{
-			rb.AddForce(transform.forward * v * jumpPower * 1.5f * Time.deltaTime,ForceMode.Force);
+		if (!InJump && !Grounded) {
+			rb.AddForce (transform.forward * v * jumpPower * 1.5f * Time.deltaTime, ForceMode.Force);
 		}
-		if(InJump) {
-			if(jumpX > 0) {
-				if(jumpX > 0.5) {
-					rb.AddForce(Vector3.up * jumpPower / 40 * Time.deltaTime,ForceMode.Force);
+		if (InJump) {
+			if (jumpX > 0) {
+				if (jumpX > 0.5) {
+					rb.AddForce (Vector3.up * jumpPower / 40 * Time.deltaTime, ForceMode.Force);
 				}
-				rb.AddForce(transform.forward * v * jumpPower * 1.5f * Time.deltaTime,ForceMode.Force);
+				rb.AddForce (transform.forward * v * jumpPower * 1.5f * Time.deltaTime, ForceMode.Force);
 			}
 			jumpX -= 1 * Time.deltaTime;
 		}
-		if(!Grounded && Jump) {
-			animator.SetBool ("Jump",false);
+		if (!Grounded && Jump) {
+			animator.SetBool ("Jump", false);
 			Jump = false;
 		}
-		if(Grounded) {
-			if(lastJumpX > 0){
+		if (Grounded) {
+			if (lastJumpX > 0) {
 				lastJumpX -= 1 * Time.deltaTime;
 			}
 			InJump = false;
-			animator.SetBool ("InJump",false);
-			if(lastJumpX < 0){
+			animator.SetBool ("InJump", false);
+			if (lastJumpX < 0) {
 				lastJumpX = 0;
 			}
 		}
-
-		Debug.Log(lastJumpX);
-
-
 	}
 	// Update is called once per frame
 	void Update () {
@@ -111,28 +111,52 @@ public class CharacterControl : MonoBehaviour {
 					vCurrent = v;
 				}
 			}
+
+			if (restrictForward) {
+				v = Mathf.Clamp (v, -1.0f, 0.0f);
+				vCurrent = Mathf.Clamp (vCurrent, -1.0f, 0.0f);
+			}
+			if (restrictBackward) {
+				v = Mathf.Clamp (v, 0.0f, 1.0f);
+				vCurrent = Mathf.Clamp (vCurrent, 0.0f, 1.0f);
+			}
+			if (restrictForward && restrictBackward) {
+				v = Mathf.Clamp (v, 0.0f, 0.0f);
+				vCurrent = Mathf.Clamp (vCurrent, 0.0f, 0.0f);
+			}
+			/*if (restrictLeft) {
+				h = Mathf.Clamp (h, 0.0f, 1.0f);
+			}
+			if (restrictRight) {
+				h = Mathf.Clamp (h, -1.0f, 0.0f);
+			}*/
+
+
+
 			animator.SetFloat("Speed", vCurrent);			// set our animator's float parameter 'Speed' equal to the vertical input axis				
 			animator.SetFloat("Direction", h); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
 		}
 	}
 
 	void OnTriggerStay (Collider col) {
-		if(col.gameObject.tag == "Environment" && !Jump) {
-			Grounded = true;
-			animator.SetBool("Grounded", true);
-		}
-		else
-		{
-			Grounded = false;
-			animator.SetBool("Grounded", false);
-			lastJumpX = 0.5f;
+		if (col.gameObject.tag != "PlayerMovementRestriction") {
+			if (col.gameObject.tag == "Environment" && !Jump) {
+				Grounded = true;
+				animator.SetBool ("Grounded", true);
+			} else {
+				Grounded = false;
+				animator.SetBool ("Grounded", false);
+				lastJumpX = 0.5f;
+			}
 		}
 	}
 	void OnTriggerExit (Collider col) {
-		if(col.gameObject.tag == "Environment") {
-			Grounded = false;
-			animator.SetBool("Grounded",false);
-			lastJumpX = 0.5f;
+		if (col.gameObject.tag != "PlayerMovementRestriction") {
+			if (col.gameObject.tag == "Environment") {
+				Grounded = false;
+				animator.SetBool ("Grounded", false);
+				lastJumpX = 0.5f;
+			}
 		}
 	}
 
