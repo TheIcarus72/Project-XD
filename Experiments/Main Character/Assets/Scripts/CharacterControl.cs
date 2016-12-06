@@ -87,8 +87,12 @@ public class CharacterControl : MonoBehaviour {
 		if (Input.GetKey (KeyCode.C) && Grounded) {
 			animator.SetBool ("Crouch", true);				// Crouch is on
 			Crouched = true;
-			v = Input.GetAxis ("Vertical"); 				// setup v variables as our vertical input axis
-			h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
+			v = Input.GetAxis ("Vertical");					// setup v variables as our vertical input axis
+			if (Input.GetKey (KeyCode.LeftAlt)) {
+				h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
+			} else {
+				h = Input.GetAxis ("Horizontal") + Input.GetAxis ("Mouse X");
+			}
 			animator.SetFloat("Speed", v);					// set our animator's float parameter 'Speed' equal to the vertical input axis				
 			animator.SetFloat("Direction", h); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
 		} else {
@@ -99,7 +103,12 @@ public class CharacterControl : MonoBehaviour {
 			} else {
 				v = Input.GetAxis ("Vertical");
 			}
-			h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
+
+			if (Input.GetKey (KeyCode.LeftAlt)) {
+				h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
+			} else {
+				h = Input.GetAxis ("Horizontal") + Input.GetAxis ("Mouse X");
+			}
 			if (vCurrent > v) {
 				vCurrent -= walkRunTransitionSpeed * Time.deltaTime;
 				if (vCurrent < v) {

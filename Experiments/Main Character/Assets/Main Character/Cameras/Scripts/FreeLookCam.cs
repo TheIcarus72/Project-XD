@@ -20,6 +20,11 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private float m_TiltMin = 45f;                       // The minimum value of the x axis rotation of the pivot.
         [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
+		[SerializeField] private GameObject defaultCamTarget;
+		[SerializeField] private GameObject aimingCamTarget;
+		private GameObject camTarget;
+		[SerializeField] private GameObject UI_Crosshair;
+		private bool Aiming;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -31,6 +36,10 @@ namespace UnityStandardAssets.Cameras
         protected override void Awake()
         {
             base.Awake();
+			camTarget = defaultCamTarget;
+			UI_Crosshair.SetActive (false);
+			Aiming = false;
+
             // Lock or unlock the cursor.
             Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !m_LockCursor;
@@ -40,15 +49,35 @@ namespace UnityStandardAssets.Cameras
 			m_TransformTargetRot = transform.localRotation;
         }
 
+		protected void LateUpdate()
+		{
+			bool changeCam = false;
+			if (Input.GetKeyDown (KeyCode.Mouse1)) {
+				changeCam = true;
+			}
+			if (changeCam) {
+				if (camTarget == defaultCamTarget) {
+					camTarget = aimingCamTarget;
+					UI_Crosshair.SetActive (true);
+					Aiming = true;
+					m_TiltAngle = Camera.main.transform.rotation.eulerAngles.x;
+				} else if (camTarget == aimingCamTarget) {
+					camTarget = defaultCamTarget;
+					UI_Crosshair.SetActive (false);
+					Aiming = false;
+				}
+			}
+		}
+
 
         protected void Update()
         {
-            HandleRotationMovement();
-            if (m_LockCursor && Input.GetMouseButtonUp(0))
-            {
-                Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
-                Cursor.visible = !m_LockCursor;
-            }
+	            HandleRotationMovement();
+	            if (m_LockCursor && Input.GetMouseButtonUp(0))
+	            {
+	                Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
+	                Cursor.visible = !m_LockCursor;
+	            }
         }
 
 
@@ -63,7 +92,7 @@ namespace UnityStandardAssets.Cameras
         {
             if (m_Target == null) return;
             // Move the rig towards target position.
-            transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime*m_MoveSpeed);
+			transform.position = Vector3.Lerp(transform.position, camTarget.transform.position, deltaTime*m_MoveSpeed);
         }
 
 
@@ -72,34 +101,44 @@ namespace UnityStandardAssets.Cameras
 			if(Time.timeScale < float.Epsilon)
 			return;
 
+			if(Input.GetKeyDown(KeyCode.LeftAlt)){
+				m_LookAngle = Camera.main.transform.rotation.eulerAngles.y;
+			}
             // Read the user input
             var x = CrossPlatformInputManager.GetAxis("Mouse X");
             var y = CrossPlatformInputManager.GetAxis("Mouse Y");
 
-            // Adjust the look angle by an amount proportional to the turn speed and horizontal input.
-            m_LookAngle += x*m_TurnSpeed;
+			if (Input.GetKey (KeyCode.LeftAlt)) {
+				// Adjust the look angle by an amount proportional to the turn speed and horizontal input.
+				m_LookAngle += x * m_TurnSpeed;
 
-            // Rotate the rig (the root object) around Y axis only:
-            m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
+				// Rotate the rig (the root object) around Y axis only:
+				m_TransformTargetRot = Quaternion.Euler (0f, m_LookAngle, 0f);
 
-            if (m_VerticalAutoReturn)
-            {
-                // For tilt input, we need to behave differently depending on whether we're using mouse or touch input:
-                // on mobile, vertical input is directly mapped to tilt value, so it springs back automatically when the look input is released
-                // we have to test whether above or below zero because we want to auto-return to zero even if min and max are not symmetrical.
-                m_TiltAngle = y > 0 ? Mathf.Lerp(0, -m_TiltMin, y) : Mathf.Lerp(0, m_TiltMax, -y);
-            }
-            else
-            {
-                // on platforms with a mouse, we adjust the current angle based on Y mouse input and turn speed
-                m_TiltAngle -= y*m_TurnSpeed;
-                // and make sure the new value is within the tilt range
-                m_TiltAngle = Mathf.Clamp(m_TiltAngle, -m_TiltMin, m_TiltMax);
-            }
+				if (m_VerticalAutoReturn) {
+					// For tilt input, we need to behave differently depending on whether we're using mouse or touch input:
+					// on mobile, vertical input is directly mapped to tilt value, so it springs back automatically when the look input is released
+					// we have to test whether above or below zero because we want to auto-return to zero even if min and max are not symmetrical.
+					m_TiltAngle = y > 0 ? Mathf.Lerp (0, -m_TiltMin, y) : Mathf.Lerp (0, m_TiltMax, -y);
+				} else {
+					// on platforms with a mouse, we adjust the current angle based on Y mouse input and turn speed
+					m_TiltAngle -= y * m_TurnSpeed;
+					// and make sure the new value is within the tilt range
+					m_TiltAngle = Mathf.Clamp (m_TiltAngle, -m_TiltMin, m_TiltMax);
+				}
 
-            // Tilt input around X is applied to the pivot (the child of this object)
-			m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y , m_PivotEulers.z);
-
+				// Tilt input around X is applied to the pivot (the child of this object)
+				m_PivotTargetRot = Quaternion.Euler (m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
+			} else {
+				if (Aiming) {
+					
+					m_TiltAngle -= y * m_TurnSpeed;
+					m_TransformTargetRot = Quaternion.Euler (m_TiltAngle, camTarget.transform.rotation.eulerAngles.y, 0f);
+				} else {
+					// Rotate the rig (the root object) around Y axis only:
+					m_TransformTargetRot = Quaternion.Euler (0f, camTarget.transform.rotation.eulerAngles.y, 0f);
+				}
+			}
 			if (m_TurnSmoothing > 0)
 			{
 				m_Pivot.localRotation = Quaternion.Slerp(m_Pivot.localRotation, m_PivotTargetRot, m_TurnSmoothing * Time.deltaTime);

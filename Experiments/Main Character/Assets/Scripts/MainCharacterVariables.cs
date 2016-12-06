@@ -38,7 +38,7 @@ public class MainCharacterVariables : MonoBehaviour {
 		}
 		if(attack == true)
 		{
-			if (xAttack < 60) {
+			if (xAttack < 40) {
 				xAttack++;
 			} else {
 				xAttack = 0;

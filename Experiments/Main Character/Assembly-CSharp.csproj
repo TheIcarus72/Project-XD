@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FollowPlayer.cs" />
      <Compile Include="Assets\Main Character\Cameras\Scripts\AbstractTargetFollower.cs" />
      <Compile Include="Assets\Main Character\Cameras\Scripts\FreeLookCam.cs" />
      <Compile Include="Assets\Main Character\Cameras\Scripts\PivotBasedCameraRig.cs" />
