@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{F9166F46-4939-6B88-6C04-BED8E232FF62}") = "stats inventory ST", "Assembly-CSharp.csproj", "{C68A8464-F5A1-ACFA-29E2-B2F1668F6775}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C68A8464-F5A1-ACFA-29E2-B2F1668F6775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C68A8464-F5A1-ACFA-29E2-B2F1668F6775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C68A8464-F5A1-ACFA-29E2-B2F1668F6775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C68A8464-F5A1-ACFA-29E2-B2F1668F6775}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
