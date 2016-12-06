@@ -8,7 +8,7 @@ public class itemDatabase : MonoBehaviour {
 
 	//Here we can add items to the database
 	void Start(){
-		items.Add (new Item ("Starter weapon", 0, "The most basic weapon", 1, Item.ItemType.weapons, 10));
+		items.Add (new Item ("Starter weapon", 0, "The most basic weapon", 1, Item.ItemType.weapons,10));
 
 	}
 }

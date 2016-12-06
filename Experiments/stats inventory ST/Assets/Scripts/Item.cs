@@ -7,7 +7,7 @@ public class Item {
 	public string itemName;
 	public int itemID;
 	public string itemDesc;
-	public Texture2D itemIcon;
+	public Texture itemIcon;
 	public int itemPower;
 	public ItemType itemType;
 	public int itemWeight;
@@ -26,7 +26,8 @@ public class Item {
 		itemName = name;
 		itemID = id;
 		itemDesc = desc;
-		itemIcon = Resources.Load<Texture2D> ("Item Icons/" + name);
+		itemIcon = Resources.Load ("Resources/Item Icons/" + name + ".png") as Texture;
+		Debug.Log ("Resources/Item Icons/" + name);
 		itemPower = power;
 		itemType = type;
 		itemWeight = weight;
