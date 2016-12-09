@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Item {
@@ -7,10 +8,11 @@ public class Item {
 	public string itemName;
 	public int itemID;
 	public string itemDesc;
-	public Texture itemIcon;
+	//public Sprite Sprite;
 	public int itemPower;
 	public ItemType itemType;
 	public int itemWeight;
+	public string itemSlug;
 
 	public enum ItemType{
 		weapons,
@@ -21,15 +23,21 @@ public class Item {
 		shields
 	}
 
+
 	//Making a way to add items by code >> itemDatabase script
-	public Item(string name, int id, string desc, int power, ItemType type, int weight){
+	public void ItemInfo(string name, int id, string desc, int power, ItemType type, int weight, string slug){
 		itemName = name;
 		itemID = id;
 		itemDesc = desc;
-		itemIcon = Resources.Load ("Resources/Item Icons/" + name + ".png") as Texture;
-		Debug.Log ("Resources/Item Icons/" + name);
+		//Sprite = giveSprite (id, slug); //Resources.Load<Sprite> (slug) as Sprite;
+		Debug.Log (Sprite);
 		itemPower = power;
 		itemType = type;
 		itemWeight = weight;
+		itemSlug = slug;
+	}
+
+	public Item(){
+		this.itemID = -1;
 	}
 }
