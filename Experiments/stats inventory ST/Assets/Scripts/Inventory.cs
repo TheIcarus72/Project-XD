@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour {
 			slots [i].transform.SetParent (slotPanel.transform);
 		}
 
-		//tell function what item to add to th inventory
+		//tell function what item to add to the inventory
 		AddItem (0);
 
 
@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour {
 				items[i] = itemToAdd;
 				GameObject itemObj = Instantiate(inventoryItem);
 				itemObj.transform.SetParent(slots[i].transform);
-				itemObj.GetComponent<Image> ().sprite = spriter.SpriteB(itemToAdd.itemID, itemToAdd.itemSlug);
+				//itemObj.GetComponent<Image> ().sprite = spriter.SpriteB(itemToAdd.itemID, itemToAdd.itemSlug);
 				//Debug.Log (itemToAdd.Sprite);
 				Debug.Log (itemToAdd.itemSlug);
 				itemObj.transform.position = Vector2.zero;		//middle of the slot, to add icon

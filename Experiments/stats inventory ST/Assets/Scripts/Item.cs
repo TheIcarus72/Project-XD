@@ -30,7 +30,7 @@ public class Item {
 		itemID = id;
 		itemDesc = desc;
 		//Sprite = giveSprite (id, slug); //Resources.Load<Sprite> (slug) as Sprite;
-		Debug.Log (Sprite);
+		Debug.Log ("1");
 		itemPower = power;
 		itemType = type;
 		itemWeight = weight;
