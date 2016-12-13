@@ -4,11 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GrabWeaponTest
-  - Environment
+  - 0
   - PlayerMovementRestriction
   - Sword
   - Enemy
+  - GrabRifle
+  - GrabSword
   layers:
   - Default
   - TransparentFX

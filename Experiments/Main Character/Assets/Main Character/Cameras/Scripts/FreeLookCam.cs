@@ -24,7 +24,8 @@ namespace UnityStandardAssets.Cameras
 		[SerializeField] private GameObject aimingCamTarget;
 		private GameObject camTarget;
 		[SerializeField] private GameObject UI_Crosshair;
-		private bool Aiming;
+		public bool Aiming;
+		public GameObject Player;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -52,7 +53,7 @@ namespace UnityStandardAssets.Cameras
 		protected void LateUpdate()
 		{
 			bool changeCam = false;
-			if (Input.GetKeyDown (KeyCode.Mouse1)) {
+			if (Input.GetKeyDown (KeyCode.Mouse1) && Player.GetComponent<MainCharacterVariables>().hasRifle == true) {
 				changeCam = true;
 			}
 			if (changeCam) {

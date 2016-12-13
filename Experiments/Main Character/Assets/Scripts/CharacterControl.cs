@@ -9,11 +9,13 @@ public class CharacterControl : MonoBehaviour {
 
 	public GameObject cameraPivot;
 	public float walkRunTransitionSpeed = 1.0f;
+	public float turnTransitionSpeed = 1.0f;
 	public float jumpPower = 1.0f;
 	private Animator animator;
 	float v = 0.0f;
 	float h = 0.0f;
 	float vCurrent = 0.0f;
+	float hCurrent = 0.0f;
 	bool Grounded = true;
 	bool Crouched = false;
 	bool Jump = false;
@@ -22,6 +24,7 @@ public class CharacterControl : MonoBehaviour {
 	float lastJumpX = 0;
 	bool cameraCrouched = false;
 	Rigidbody rb;
+	public GameObject Player;
 
 	// Use this for initialization
 	void Awake () {
@@ -55,7 +58,7 @@ public class CharacterControl : MonoBehaviour {
 			jumpX -= 1 * Time.deltaTime;
 		}
 		if (!Grounded && Jump) {
-			animator.SetBool ("Jump", false);
+			animator.SetBool ("FJump", false);
 			Jump = false;
 		}
 		if (Grounded) {
@@ -106,7 +109,7 @@ public class CharacterControl : MonoBehaviour {
 
 			if (Input.GetKey (KeyCode.LeftAlt)) {
 				h = Input.GetAxis ("Horizontal");				// setup h variable as our horizontal input axis
-			} else {
+			}else {
 				h = Input.GetAxis ("Horizontal") + Input.GetAxis ("Mouse X");
 			}
 			if (vCurrent > v) {
@@ -120,6 +123,18 @@ public class CharacterControl : MonoBehaviour {
 					vCurrent = v;
 				}
 			}
+			if (hCurrent > h) {
+				hCurrent -= turnTransitionSpeed * Time.deltaTime;
+				if (hCurrent < h) {
+					hCurrent = h;
+				}
+			} else if (hCurrent < h) {
+				hCurrent += turnTransitionSpeed * Time.deltaTime;
+				if (hCurrent > h) {
+					hCurrent = h;
+				}
+			}
+
 
 			if (restrictForward) {
 				v = Mathf.Clamp (v, -1.0f, 0.0f);
@@ -143,7 +158,10 @@ public class CharacterControl : MonoBehaviour {
 
 
 			animator.SetFloat("Speed", vCurrent);			// set our animator's float parameter 'Speed' equal to the vertical input axis				
-			animator.SetFloat("Direction", h); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
+			animator.SetFloat("Direction", hCurrent); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
+			if(Player.GetComponent<MainCharacterVariables>().hasRifle == true){
+				transform.Rotate(new Vector3(0.0f,h * Time.deltaTime * 50.0f ,0.0f));
+			}
 		}
 	}
 

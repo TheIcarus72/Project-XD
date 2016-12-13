@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0f97a4bec455cc545b4e1300a4850c08
-timeCreated: 1480260744
+timeCreated: 1481313568
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -844,12 +844,12 @@ ModelImporter:
       transformModified: 1
     - name: LeftArm
       position: {x: -0.123191, y: -0.01113, z: -0.017934998}
-      rotation: {x: -0.3092972, y: -0.1579724, z: -0.0049719615, w: 0.9377394}
+      rotation: {x: -0.30929723, y: -0.15797241, z: -0.004971962, w: 0.93773943}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LeftForeArm
       position: {x: -0.27686998, y: 0, z: 0}
-      rotation: {x: -0.8212007, y: 0.015266655, z: -0.010962026, w: 0.5703298}
+      rotation: {x: -0.8212008, y: 0.015266656, z: -0.010962027, w: 0.57032984}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: LeftHand
@@ -1049,7 +1049,7 @@ ModelImporter:
       transformModified: 1
     - name: RightHandPinky3
       position: {x: 0.02782, y: 0, z: 0}
-      rotation: {x: 0.00000038864746, y: -0.0000012191731, z: -0.009818186, w: 0.9999518}
+      rotation: {x: 0.0000003886475, y: -0.0000012191732, z: -0.009818187, w: 0.99995184}
       scale: {x: 1, y: 1, z: 1}
       transformModified: 1
     - name: RightHandPinky4
