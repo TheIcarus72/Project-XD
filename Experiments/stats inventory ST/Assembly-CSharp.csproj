@@ -49,6 +49,8 @@
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\Statshud.cs" />
+     <Compile Include="Assets\Scripts\blinkers\energyBlinker.cs" />
+     <Compile Include="Assets\Scripts\blinkers\healthBlinker.cs" />
      <Compile Include="Assets\Scripts\giveSprite.cs" />
      <Compile Include="Assets\Scripts\itemDatabase.cs" />
  <Reference Include="UnityEngine.UI">
