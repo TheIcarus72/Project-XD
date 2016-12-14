@@ -21,5 +21,9 @@ public class Enemy : MonoBehaviour {
 		{
 			HealthPoints -= MainCharacterVariables.swordDamage;
 		}
+		if(col.gameObject.tag == "Bullet" && MainCharacterVariables.attack)
+		{
+			HealthPoints -= MainCharacterVariables.rifleDamage;
+		}
 	}
 }

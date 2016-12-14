@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FollowPlayer.cs" />
      <Compile Include="Assets\Main Character\Cameras\Scripts\AbstractTargetFollower.cs" />
      <Compile Include="Assets\Main Character\Cameras\Scripts\FreeLookCam.cs" />
      <Compile Include="Assets\Main Character\Cameras\Scripts\PivotBasedCameraRig.cs" />
@@ -103,8 +102,10 @@
      <Compile Include="Assets\Main Character\Effects\ImageEffects\Scripts\Twirl.cs" />
      <Compile Include="Assets\Main Character\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
      <Compile Include="Assets\Main Character\Effects\ImageEffects\Scripts\Vortex.cs" />
+     <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CharacterControl.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\MainCharacterVariables.cs" />
      <None Include="Assets\Main Character\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Main Character\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />

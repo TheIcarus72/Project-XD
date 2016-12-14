@@ -8,49 +8,83 @@ public class MainCharacterVariables : MonoBehaviour {
 	private Animator animator;
 	public bool hasSword = false;
 	public bool hasRifle = false;
-	public float displaySwordDelay = 0.0f;
-	float hasSwordX = 0.0f;
+	public float swordGrabDelay = 0.0f;
+	public float swordHolsterDelay = 0.0f;
+	public float hasSwordX = 0.0f;
 	static public bool attack = false;
 	public GameObject Sword;
 	public GameObject Rifle;
+	public GameObject bullet;
+	public GameObject barrelExit;
 	static public float swordDamage = 10.0f;
 	static public float rifleDamage = 7.0f;
-	public GameObject SwordEquip;
-	public GameObject RifleEquip;
 	bool Aiming = false;
 
-	void Awake () {
+	void Awake (){
 		animator = GetComponent<Animator>();
 	}
-
-	void OnTriggerEnter (Collider col) {
-		if( col.gameObject.tag == "GrabSword" )
+	void LateUpdate() {
+		if (Input.GetKeyDown (KeyCode.Alpha1))
 		{
-			hasSwordX = displaySwordDelay;
-			hasSword = true;
-			animator.SetBool("HasSword",true);
-			SwordEquip.SetActive(false);
-			RifleEquip.SetActive(true);
+			Aiming = false;
+			if (hasRifle && !attack) {
+				hasRifle = false;
+				animator.SetBool("HasRifle",false);
+			}
+			if (!hasSword && !attack) {
+				hasSwordX = swordGrabDelay;
+				hasSword = true;
+				animator.SetBool("HasSword",true);
+			}else if (hasSword && !attack) {
+				hasSwordX = swordHolsterDelay;
+				hasSword = false;
+				animator.SetBool("HasSword",false);
+			}
 		}
-		if( col.gameObject.tag == "GrabRifle" )
+		if (Input.GetKeyDown (KeyCode.Alpha2))
 		{
-			hasRifle = true;
-			animator.SetBool("HasRifle",true);
-			Rifle.SetActive(true);
-			RifleEquip.SetActive(false);
-			SwordEquip.SetActive(true);
+			Aiming = false;
+			if (!hasRifle && !attack && hasSword) {
+				hasSword = false;
+				animator.SetBool("HasSword",false);
+				hasSwordX = swordHolsterDelay;
+				hasRifle = true;
+				animator.SetBool("HasRifle",true);
+			}else if(!hasRifle && !attack && !hasSword) {
+				hasSword = false;
+				animator.SetBool("HasSword",false);
+				hasSwordX = 0f;
+				hasRifle = true;
+				animator.SetBool("HasRifle",true);
+			}else if (hasRifle && !attack) {
+				hasSwordX = 0f;
+				hasRifle = false;
+				animator.SetBool("HasRifle",false);
+			}
 		}
 	}
-
 	void Update () {
 		if (hasSwordX > 0 && hasSword) {
 			hasSwordX -= 1 * Time.deltaTime;
-		} else if (hasSwordX <= 0 && hasSword) {
+		}
+		if (hasSwordX <= 0 && hasSword) {
 			Sword.SetActive(true);
 			hasSwordX = 0.0f;
 		}
-		if(attack == true && hasSword)
-		{
+		if (hasSwordX > 0 && !hasSword) {
+			hasSwordX -= 1 * Time.deltaTime;
+		}
+		if (hasSwordX <= 0 && !hasSword) {
+			Sword.SetActive(false);
+			hasSwordX = 0.0f;
+		}
+		if (hasSwordX <= 0 && hasRifle) {
+			Rifle.SetActive(true);
+		}
+		if (hasSwordX <= 0 && !hasRifle) {
+			Rifle.SetActive(false);
+		}
+		if (attack == true && hasSword) {
 			if (xAttack < 40) {
 				xAttack++;
 			} else {
@@ -80,13 +114,30 @@ public class MainCharacterVariables : MonoBehaviour {
 		{
 			attack = true;
 			animator.SetBool ("Attack",true);
+			fireBullet();
 		}
-		if(CrossPlatformInputManager.GetButton("Fire2") && hasRifle == true) {
-			Aiming = true;
-			animator.SetBool("Aiming",true);
-		} else {
+		if(CrossPlatformInputManager.GetButtonDown("Fire2")){
+			if(hasRifle){
+				Aiming = true;
+				animator.SetBool("Aiming",true);
+			}
+		}
+		if(CrossPlatformInputManager.GetButton("Fire2")){
+			if(!hasRifle){
+				Aiming = false;
+				animator.SetBool("Aiming",false);
+			}
+		}
+		if(CrossPlatformInputManager.GetButtonUp("Fire2")){
 			Aiming = false;
 			animator.SetBool("Aiming",false);
+		}
+
+	}
+
+	private void fireBullet(){
+		{
+			GameObject Bullet = Instantiate(bullet, barrelExit.transform.position, Quaternion.identity) as GameObject;
 		}
 	}
 }

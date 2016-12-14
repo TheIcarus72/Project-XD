@@ -53,7 +53,14 @@ namespace UnityStandardAssets.Cameras
 		protected void LateUpdate()
 		{
 			bool changeCam = false;
-			if (Input.GetKeyDown (KeyCode.Mouse1) && Player.GetComponent<MainCharacterVariables>().hasRifle == true) {
+			if (Player.GetComponent<MainCharacterVariables>().hasRifle == false && Aiming == true)
+			{
+				changeCam = true;
+			}
+			if (Input.GetKeyDown (KeyCode.Mouse1) && Player.GetComponent<MainCharacterVariables>().hasRifle == true && Aiming == false) {
+				changeCam = true;
+			}
+			if (Input.GetKeyUp (KeyCode.Mouse1) && Player.GetComponent<MainCharacterVariables>().hasRifle == true && Aiming == true) {
 				changeCam = true;
 			}
 			if (changeCam) {
