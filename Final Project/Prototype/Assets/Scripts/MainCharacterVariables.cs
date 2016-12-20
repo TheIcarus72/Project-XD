@@ -19,47 +19,64 @@ public class MainCharacterVariables : MonoBehaviour {
 	static public float swordDamage = 10.0f;
 	static public float rifleDamage = 7.0f;
 	bool Aiming = false;
+	public AudioClip [] soundEffects;
+	private AudioSource source;
 
 	void Awake (){
 		animator = GetComponent<Animator>();
+		source = GetComponent<AudioSource> ();
 	}
 	void LateUpdate() {
 		if (Input.GetKeyDown (KeyCode.Alpha1))
 		{
 			Aiming = false;
-			if (hasRifle && !attack) {
+			if (hasRifle && !attack) {		
 				hasRifle = false;
-				animator.SetBool("HasRifle",false);
+				animator.SetBool("HasRifle",false);		//withdraw gun
+				source.clip = soundEffects[2];
+				source.Play();
 			}
 			if (!hasSword && !attack) {
 				hasSwordX = swordGrabDelay;
 				hasSword = true;
-				animator.SetBool("HasSword",true);
+				animator.SetBool("HasSword",true);		//draw sword
+				source.clip = soundEffects[2];
+				source.Play();
 			}else if (hasSword && !attack) {
 				hasSwordX = swordHolsterDelay;
 				hasSword = false;
-				animator.SetBool("HasSword",false);
+				animator.SetBool("HasSword",false);		//withdraw sword
+				source.clip = soundEffects[2];
+				source.Play();
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha2))
 		{
 			Aiming = false;
-			if (!hasRifle && !attack && hasSword) {
+			if (!hasRifle && !attack && hasSword) { 	//if sword in hands
 				hasSword = false;
-				animator.SetBool("HasSword",false);
+				animator.SetBool("HasSword",false);		//withdraw sword
+				source.clip = soundEffects[2];
+				source.Play();
 				hasSwordX = swordHolsterDelay;
 				hasRifle = true;
-				animator.SetBool("HasRifle",true);
-			}else if(!hasRifle && !attack && !hasSword) {
+				animator.SetBool("HasRifle",true);		//draw gun
+				source.clip = soundEffects[2];
+				source.Play();
+			}else if(!hasRifle && !attack && !hasSword) {		//if nothing in hands
 				hasSword = false;
 				animator.SetBool("HasSword",false);
 				hasSwordX = 0f;
 				hasRifle = true;
-				animator.SetBool("HasRifle",true);
-			}else if (hasRifle && !attack) {
+				animator.SetBool("HasRifle",true);		//draw gun
+				source.clip = soundEffects[2];
+				source.Play();
+			}else if (hasRifle && !attack) {		//if gun in hands
 				hasSwordX = 0f;
 				hasRifle = false;
-				animator.SetBool("HasRifle",false);
+				animator.SetBool("HasRifle",false);		//withdraw gun
+				source.clip = soundEffects[2];
+				source.Play();
 			}
 		}
 	}
@@ -109,6 +126,8 @@ public class MainCharacterVariables : MonoBehaviour {
 		{
 			attack = true;
 			animator.SetBool ("Attack",true);
+			source.clip = soundEffects[0];
+			source.Play();
 		}
 		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasRifle == true && Aiming == true)
 		{
@@ -138,6 +157,8 @@ public class MainCharacterVariables : MonoBehaviour {
 	private void fireBullet(){
 		{
 			GameObject Bullet = Instantiate(bullet, barrelExit.transform.position, Quaternion.identity) as GameObject;
+			source.clip = soundEffects[1];
+			source.Play();
 		}
 	}
 }
