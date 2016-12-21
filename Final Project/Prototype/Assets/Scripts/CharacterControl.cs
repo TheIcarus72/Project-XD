@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class CharacterControl : MonoBehaviour {
+	public bool movementEnabled = true;
+
 	static public bool restrictForward = false;
 	static public bool restrictBackward = false;
 	static public bool restrictLeft = false;
@@ -31,8 +33,8 @@ public class CharacterControl : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		animator = GetComponent<Animator> ();
-		rb = GetComponent<Rigidbody> ();
 		source = GetComponent<AudioSource> ();
+		rb = GetComponent<Rigidbody> ();
 	}
 	void FixedUpdate () {
 		if (Grounded && !Jump && !InJump) {
@@ -79,10 +81,10 @@ public class CharacterControl : MonoBehaviour {
 	void Update () {
 		
 
-		if(Input.GetKeyDown (KeyCode.Space) && Grounded && !Jump && !InJump && lastJumpX <= 0) {
+		if(Input.GetKeyDown (KeyCode.Space) && Grounded && !Jump && !InJump && lastJumpX <= 0 && movementEnabled) {
 			Jump = true;
 			animator.SetBool ("Jump",true);
-			source.clip = soundEffects[2];
+			source.clip = soundEffects[0];
 			source.Play();
 			InJump = true;
 			animator.SetBool ("InJump",true);
@@ -92,7 +94,7 @@ public class CharacterControl : MonoBehaviour {
 			rb.AddForce(transform.forward * v * jumpPower * 2 * Time.deltaTime,ForceMode.Force);
 		}
 
-		if (Input.GetKey (KeyCode.C) && Grounded) {
+		if (Input.GetKey (KeyCode.C) && Grounded && movementEnabled) {
 			animator.SetBool ("Crouch", true);				// Crouch is on
 			Crouched = true;
 			v = Input.GetAxis ("Vertical");					// setup v variables as our vertical input axis
@@ -103,12 +105,12 @@ public class CharacterControl : MonoBehaviour {
 			}
 			animator.SetFloat("Speed", v);					// set our animator's float parameter 'Speed' equal to the vertical input axis				
 			animator.SetFloat("Direction", h); 				// set our animator's float parameter 'Direction' equal to the horizontal input axis
-		} else {
+		} else if (movementEnabled){
 			animator.SetBool ("Crouch", false);				// Crouch is off
 			Crouched = false;
 			if (Input.GetKey (KeyCode.LeftShift) && v >= 0) {
 				v = Input.GetAxis ("Vertical") / 4;			// setup v variables as our vertical input axis
-			} else {
+			} else if(movementEnabled){
 				v = Input.GetAxis ("Vertical");
 			}
 
