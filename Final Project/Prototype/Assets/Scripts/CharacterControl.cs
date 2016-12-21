@@ -1,4 +1,4 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class CharacterControl : MonoBehaviour {
@@ -25,11 +25,14 @@ public class CharacterControl : MonoBehaviour {
 	bool cameraCrouched = false;
 	Rigidbody rb;
 	public GameObject Player;
+	public AudioClip [] soundEffects;
+	private AudioSource source;
 
 	// Use this for initialization
 	void Awake () {
 		animator = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody> ();
+		source = GetComponent<AudioSource> ();
 	}
 	void FixedUpdate () {
 		if (Grounded && !Jump && !InJump) {
@@ -79,6 +82,8 @@ public class CharacterControl : MonoBehaviour {
 		if(Input.GetKeyDown (KeyCode.Space) && Grounded && !Jump && !InJump && lastJumpX <= 0) {
 			Jump = true;
 			animator.SetBool ("Jump",true);
+			source.clip = soundEffects[2];
+			source.Play();
 			InJump = true;
 			animator.SetBool ("InJump",true);
 			jumpX = 1.5f;

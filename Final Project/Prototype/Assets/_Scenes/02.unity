@@ -368,6 +368,10 @@ MonoBehaviour:
   turnTransitionSpeed: 4
   jumpPower: 200000
   Player: {fileID: 59386808}
+  soundEffects:
+  - {fileID: 8300000, guid: 05bb374663fd6ac4fa1fe43dd7f3a8e6, type: 3}
+  - {fileID: 8300000, guid: 5ca13491c8551824ab4041536b50e7d5, type: 3}
+  - {fileID: 8300000, guid: a62797dd2d73a284fa4768a8949fdd73, type: 3}
 --- !u!65 &59386814
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3537,7 +3541,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
