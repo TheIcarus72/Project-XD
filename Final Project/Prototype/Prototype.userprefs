@@ -1,14 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainCharacterVariables.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterControl.cs">
     <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\BackgroundMusic.cs" Line="27" Column="15" />
-=======
-      <File FileName="Assets\Scripts\MainCharacterVariables.cs" Line="26" Column="39" />
-      <File FileName="Assets\Scripts\inventory\Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CharacterControl.cs" Line="30" Column="27" />
->>>>>>> 59ba4472d3d44df74244a9306b75b6a838f03673
+      <File FileName="Assets\Scripts\CharacterControl.cs" Line="24" Column="9" />
+      <File FileName="Assets\Scripts\footsteps.cs" Line="64" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

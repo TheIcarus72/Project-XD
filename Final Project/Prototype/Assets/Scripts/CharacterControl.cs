@@ -1,4 +1,4 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class CharacterControl : MonoBehaviour {
@@ -21,7 +21,7 @@ public class CharacterControl : MonoBehaviour {
 	bool Grounded = true;
 	bool Crouched = false;
 	bool Jump = false;
-	bool InJump = false;
+	public bool InJump = false;
 	float jumpX =  0;
 	float lastJumpX = 0;
 	bool cameraCrouched = false;
