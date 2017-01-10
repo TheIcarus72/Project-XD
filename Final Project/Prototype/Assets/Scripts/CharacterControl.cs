@@ -18,7 +18,7 @@ public class CharacterControl : MonoBehaviour {
 	float h = 0.0f;
 	float vCurrent = 0.0f;
 	float hCurrent = 0.0f;
-	bool Grounded = true;
+	public bool Grounded = true;
 	bool Crouched = false;
 	bool Jump = false;
 	public bool InJump = false;
@@ -37,7 +37,7 @@ public class CharacterControl : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 	}
 	void FixedUpdate () {
-		if (Grounded && !Jump && !InJump) {
+		if (Grounded && !Jump && !InJump) { // sticking gravity
 			rb.AddForce (Physics.gravity * rb.mass);
 		}
 		if (Crouched == true && cameraCrouched == false) {
@@ -77,10 +77,9 @@ public class CharacterControl : MonoBehaviour {
 			}
 		}
 	}
+
 	// Update is called once per frame
 	void Update () {
-		
-
 		if(Input.GetKeyDown (KeyCode.Space) && Grounded && !Jump && !InJump && lastJumpX <= 0 && movementEnabled) {
 			Jump = true;
 			animator.SetBool ("Jump",true);
@@ -89,6 +88,7 @@ public class CharacterControl : MonoBehaviour {
 			InJump = true;
 			animator.SetBool ("InJump",true);
 			jumpX = 1.5f;
+
 
 			rb.AddForce(Vector3.up * jumpPower * 10 * Time.deltaTime,ForceMode.Force);
 			rb.AddForce(transform.forward * v * jumpPower * 2 * Time.deltaTime,ForceMode.Force);
@@ -170,6 +170,7 @@ public class CharacterControl : MonoBehaviour {
 				transform.Rotate(new Vector3(0.0f,h * Time.deltaTime * 50.0f ,0.0f));
 			}
 		}
+
 	}
 
 	void OnTriggerStay (Collider col) {

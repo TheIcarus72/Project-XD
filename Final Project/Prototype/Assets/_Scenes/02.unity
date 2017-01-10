@@ -501,7 +501,7 @@ MonoBehaviour:
   cameraPivot: {fileID: 996955475}
   walkRunTransitionSpeed: 2
   turnTransitionSpeed: 4
-  jumpPower: 200000
+  jumpPower: 30000
   InJump: 0
   Player: {fileID: 59386808}
   soundEffects:

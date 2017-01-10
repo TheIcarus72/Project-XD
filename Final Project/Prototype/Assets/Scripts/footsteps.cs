@@ -5,6 +5,9 @@ using UnityEngine;
 public class footsteps : MonoBehaviour {
 
 	public CharacterControl characterControlScript;
+	public float walk = 0.48f;
+	public float run = 0.285f;
+	public float crouch = 0.44f;
 	public AudioClip footstep;
 	private AudioSource source;
 
@@ -20,7 +23,7 @@ public class footsteps : MonoBehaviour {
 			StopAllCoroutines ();
 			StartCoroutine ("running");
 		}
-		if (Input.GetKey (KeyCode.W) && (Input.GetKeyUp (KeyCode.C) || Input.GetKeyUp (KeyCode.LeftShift))) {
+		if (Input.GetKey (KeyCode.W) && (Input.GetKeyUp (KeyCode.C) || Input.GetKeyUp (KeyCode.LeftShift) )) {
 			StopAllCoroutines ();
 			StartCoroutine ("running");
 		}
@@ -35,14 +38,25 @@ public class footsteps : MonoBehaviour {
 			StopAllCoroutines ();
 			StartCoroutine ("walking");
 		}
+		if (Input.GetKey (KeyCode.W) && Input.GetKey (KeyCode.LeftShift) && Input.GetKeyUp (KeyCode.C)) {
+			StopAllCoroutines ();
+			StartCoroutine ("walking");
+		}
 
 
 		//crouchedWalking
-		if (Input.GetKeyDown (KeyCode.W) && Input.GetKeyDown (KeyCode.C)) {
+		if (Input.GetKey (KeyCode.W) && Input.GetKeyDown (KeyCode.C)) {
 			StopAllCoroutines ();
 			StartCoroutine ("crouchedWalking");
 		}
-
+		if (Input.GetKeyDown (KeyCode.W) && Input.GetKey (KeyCode.C)) {
+			StopAllCoroutines ();
+			StartCoroutine ("crouchedWalking");
+		}
+		if (Input.GetKey (KeyCode.W) && Input.GetKey (KeyCode.C) && Input.GetKeyUp (KeyCode.LeftShift)) {
+			StopAllCoroutines ();
+			StartCoroutine ("crouchedWalking");
+		}
 
 
 		//if (Input.GetKeyDown (KeyCode.W)) {										//crouchedTurning
@@ -51,18 +65,21 @@ public class footsteps : MonoBehaviour {
 		//}
 
 
-
+		// stop coroutines if W key is up or if movement is restricted
 		if (Input.GetKeyUp (KeyCode.W)){
 			StopAllCoroutines ();
 		}
+		/*if (characterControlScript.restrictForward == true || characterControlScript.restrictBackward == true ){
+			StopAllCoroutines ();
+		}*/
 	}
 
 	IEnumerator walking(){
 		while (true) {
 			source.PlayOneShot (footstep, 0.8f);
-			yield return new WaitForSeconds (0.492f);
-			if (characterControlScript.InJump == true) {
-				yield return new WaitForSeconds (2f);
+			yield return new WaitForSeconds (walk);
+			if (characterControlScript.Grounded == false) {
+				yield return new WaitForSeconds (0.5f);
 			}
 		}
 	}
@@ -70,21 +87,24 @@ public class footsteps : MonoBehaviour {
 	IEnumerator running(){
 		while (true) {
 			source.PlayOneShot (footstep, 0.8f);
-			yield return new WaitForSeconds (0.3f);
+			yield return new WaitForSeconds (run);
+			if (characterControlScript.Grounded == false) {
+				yield return new WaitForSeconds (0.5f);
+			}
 		}
 	}
 
 	IEnumerator crouchedWalking(){
 		while (true) {
 			source.PlayOneShot (footstep, 0.8f);
-			yield return new WaitForSeconds (1f);
+			yield return new WaitForSeconds (crouch);
 		}
 	}
 
-	IEnumerator crouchedTurning(){
+	/*IEnumerator crouchedTurning(){
 		while (true) {
 			source.PlayOneShot (footstep, 0.8f);
-			yield return new WaitForSeconds (1f);
+			yield return new WaitForSeconds (0.455f);
 		}
-	}
+	}*/
 }
