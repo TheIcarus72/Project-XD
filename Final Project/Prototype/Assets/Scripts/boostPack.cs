@@ -18,22 +18,14 @@ public class boostPack : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			//add health and delete object if the object is a healthpack
 			if (this.gameObject.tag == "health") {
-				if (statsScript.health <= 100) {
-					statsScript.health = statsScript.health + 100;
-				} else {
-					statsScript.health = 200;
-				}
+				statsScript.health = statsScript.maxHealth;
 				packsScript.healthPickUp = true;
 				Destroy (this.gameObject);
 			}
 
 			//add energy and delete object if the object is a energypack
 			if (this.gameObject.tag == "energy") {
-				if (statsScript.energy <= 100) {
-					statsScript.energy = statsScript.energy + 100;
-				} else {
-					statsScript.energy = 200;
-				}
+				statsScript.energy = statsScript.energy + 100;
 				packsScript.energyPickUp = true;
 				Destroy (this.gameObject);
 			}

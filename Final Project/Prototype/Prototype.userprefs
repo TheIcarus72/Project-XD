@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\inventory\Statshud.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\boostPack.cs">
     <Files>
-      <File FileName="Assets\Scripts\inventory\Statshud.cs" Line="62" Column="17" />
-      <File FileName="Assets\Scripts\MainCharacterVariables.cs" Line="155" Column="187" />
+      <File FileName="Assets\Scripts\inventory\Statshud.cs" Line="183" Column="55" />
+      <File FileName="Assets\Scripts\inventory\blinkers\energyBlinker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\boostPack.cs" Line="28" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
