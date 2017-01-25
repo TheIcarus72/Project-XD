@@ -16,6 +16,7 @@ public class MainCharacterVariables : MonoBehaviour {
 	public GameObject Rifle;
 	public GameObject bullet;
 	public GameObject barrelExit;
+	public Statshud statsScript;
 	static public float swordDamage = 10.0f;
 	static public float rifleDamage = 7.0f;
 	bool Aiming = false;
@@ -143,18 +144,21 @@ public class MainCharacterVariables : MonoBehaviour {
 			}
 
 		}
-		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasSword == true && movementEnabled)
+		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasSword == true && movementEnabled && statsScript.energy >= 20)
 		{
 			attack = true;
 			animator.SetBool ("Attack",true);
 			source.clip = soundEffects[0];
 			source.Play();
+			statsScript.energy = statsScript.energy - 20;
 		}
-		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasRifle == true && Aiming == true && movementEnabled)
+		if(CrossPlatformInputManager.GetButtonDown("Fire1") && attack == false && hasRifle == true && Aiming == true && movementEnabled && statsScript.ammoAmount > 0 && statsScript.energy >= 5)
 		{
 			attack = true;
 			animator.SetBool ("Attack",true);
 			fireBullet();
+			statsScript.ammoAmount = statsScript.ammoAmount - 1;
+			statsScript.energy = statsScript.energy - 5;
 		}
 		if(CrossPlatformInputManager.GetButtonDown("Fire2") && movementEnabled){
 			if(hasRifle){

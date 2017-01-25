@@ -12,6 +12,10 @@ TagManager:
   - GrabSword
   - Environment
   - PlayerMisc
+  - health
+  - energy
+  - ammo
+  - handler
   layers:
   - Default
   - TransparentFX
