@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlayButton : MonoBehaviour {
 	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	void OnMouseDown(){
 		SceneManager.LoadScene (1);
 	}

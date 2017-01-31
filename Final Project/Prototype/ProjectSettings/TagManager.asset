@@ -16,6 +16,7 @@ TagManager:
   - energy
   - ammo
   - handler
+  - dialoge
   layers:
   - Default
   - TransparentFX

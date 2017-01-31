@@ -9,8 +9,7 @@ public class ExitButton : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-		// open panel? or quit immediately
-		//Application.Quit ();
+		Application.Quit ();
 	}
 
 	void OnMouseEnter(){
