@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: be1faffd3ff8fba4a88bc996ba5194a2
+timeCreated: 1485352546
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - hallway: {fileID: 1000010814679068, guid: 2193fb5a391f4b74999852bf28d42366, type: 2}
+  - room: {fileID: 1000013533466582, guid: 0f3b4dc4b0fffb148b89b98d968b4905, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
