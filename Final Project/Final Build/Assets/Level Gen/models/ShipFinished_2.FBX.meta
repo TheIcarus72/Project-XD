@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 90bcb1fc32c1e714285b1bdb1a433b65
+timeCreated: 1485902674
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AmmoBox
+    100002: AudioTape
+    100004: BarChair
+    100006: Box
+    100008: Boxes_1
+    100010: Boxes_2
+    100012: Boxes_3
+    100014: ContainerCart
+    100016: Crosspath 1x1
+    100018: Elevator
+    100020: Elevator_Floor
+    100022: Hallway 1x1
+    100024: Hallway_2 1x1
+    100026: Hallway_Floor
+    100028: Knife
+    100030: Med_Kit
+    100032: Medical_Cart
+    100034: Room1_Floor
+    100036: Room2_Floor
+    100038: Room3_Floor
+    100040: Room4_Floor
+    100042: Room4_Stairs
+    100044: Room_1  2x2
+    100046: Room_2 2x2
+    100048: Room_3 2x2
+    100050: Room_4 2x2
+    100052: //RootNode
+    400000: AmmoBox
+    400002: AudioTape
+    400004: BarChair
+    400006: Box
+    400008: Boxes_1
+    400010: Boxes_2
+    400012: Boxes_3
+    400014: ContainerCart
+    400016: Crosspath 1x1
+    400018: Elevator
+    400020: Elevator_Floor
+    400022: Hallway 1x1
+    400024: Hallway_2 1x1
+    400026: Hallway_Floor
+    400028: Knife
+    400030: Med_Kit
+    400032: Medical_Cart
+    400034: Room1_Floor
+    400036: Room2_Floor
+    400038: Room3_Floor
+    400040: Room4_Floor
+    400042: Room4_Stairs
+    400044: Room_1  2x2
+    400046: Room_2 2x2
+    400048: Room_3 2x2
+    400050: Room_4 2x2
+    400052: //RootNode
+    2300000: AmmoBox
+    2300002: AudioTape
+    2300004: BarChair
+    2300006: Box
+    2300008: Boxes_1
+    2300010: Boxes_2
+    2300012: Boxes_3
+    2300014: ContainerCart
+    2300016: Crosspath 1x1
+    2300018: Elevator
+    2300020: Elevator_Floor
+    2300022: Hallway 1x1
+    2300024: Hallway_2 1x1
+    2300026: Hallway_Floor
+    2300028: Knife
+    2300030: Med_Kit
+    2300032: Medical_Cart
+    2300034: Room1_Floor
+    2300036: Room2_Floor
+    2300038: Room3_Floor
+    2300040: Room4_Floor
+    2300042: Room4_Stairs
+    2300044: Room_1  2x2
+    2300046: Room_2 2x2
+    2300048: Room_3 2x2
+    2300050: Room_4 2x2
+    3300000: AmmoBox
+    3300002: AudioTape
+    3300004: BarChair
+    3300006: Box
+    3300008: Boxes_1
+    3300010: Boxes_2
+    3300012: Boxes_3
+    3300014: ContainerCart
+    3300016: Crosspath 1x1
+    3300018: Elevator
+    3300020: Elevator_Floor
+    3300022: Hallway 1x1
+    3300024: Hallway_2 1x1
+    3300026: Hallway_Floor
+    3300028: Knife
+    3300030: Med_Kit
+    3300032: Medical_Cart
+    3300034: Room1_Floor
+    3300036: Room2_Floor
+    3300038: Room3_Floor
+    3300040: Room4_Floor
+    3300042: Room4_Stairs
+    3300044: Room_1  2x2
+    3300046: Room_2 2x2
+    3300048: Room_3 2x2
+    3300050: Room_4 2x2
+    4300000: Hallway 1x1
+    4300002: Crosspath 1x1
+    4300004: Room_2 2x2
+    4300006: Hallway_2 1x1
+    4300008: Room_3 2x2
+    4300010: Room_1  2x2
+    4300012: Room_4 2x2
+    4300014: Boxes_1
+    4300016: Boxes_2
+    4300018: AmmoBox
+    4300020: ContainerCart
+    4300022: AudioTape
+    4300024: Med_Kit
+    4300026: Boxes_3
+    4300028: Box
+    4300030: Knife
+    4300032: BarChair
+    4300034: Medical_Cart
+    4300036: Elevator
+    4300038: Room1_Floor
+    4300040: Room2_Floor
+    4300042: Room3_Floor
+    4300044: Room4_Stairs
+    4300046: Room4_Floor
+    4300048: Elevator_Floor
+    4300050: Hallway_Floor
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
