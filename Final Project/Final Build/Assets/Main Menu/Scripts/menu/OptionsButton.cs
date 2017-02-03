@@ -16,41 +16,43 @@ public class OptionsButton : MonoBehaviour {
 	}
 
 	void Update(){
-		
+		//move camera until a certain position has been reached
 		if (optionsPressed) {
 			camera.transform.Translate (0.31f * cameraSpeed, 0.01f * cameraSpeed, 0.1f * cameraSpeed);
-			//print ("pressed");
 			if (camera.transform.position.x >= 1.0f) {
 				optionsPressed = false;
 
 			}
 		}
 
+		//move camera until a certain position has been reached
 		if (backPressed) {
 			camera.transform.Translate (-0.31f * cameraSpeed, -0.01f * cameraSpeed, -0.1f * cameraSpeed);
 			if (camera.transform.position.x <= -3.0f) {
 				backPressed = false;
-				//print ("destination");
 			}
 		}
 	}
 	
 	void OnMouseDown(){
+		//enable cameramovement in update function
 		if(this.gameObject.tag == "options"){
 			optionsPressed = true;
 			gameController.inOptions = true;
-			//Vector3(-1.2f, 0.05f, 0.41f), new Vector3(0.62f, 0.09f, 0.41f);
 		}
+		//enable cameramovent backwards in update function
 		if (this.gameObject.tag == "back") {
 			backPressed = true;
 			gameController.inOptions = false;
 		}
 	}
 
+	//change textcolor when mouse over
 	void OnMouseEnter(){
 		gameObject.GetComponent<TextMesh> ().color = Color.cyan;
 	}
 
+	//change textcolor when mouse exit
 	void OnMouseExit(){
 		gameObject.GetComponent<TextMesh> ().color = Color.white;
 	}

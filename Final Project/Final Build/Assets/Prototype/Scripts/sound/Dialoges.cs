@@ -43,7 +43,7 @@ public class Dialoges : MonoBehaviour {
 		}
 	}
 
-	//
+	//display text if there is still audio playing from the previous audiotape
 	void OnTriggerEnter(Collider other){
 		if(source.isPlaying && other.gameObject.tag == "dialoge" && numberPickedUp <= 9) {
 			eToPickUpText.SetActive (true);

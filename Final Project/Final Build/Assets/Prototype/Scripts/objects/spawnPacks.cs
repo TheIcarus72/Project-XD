@@ -28,10 +28,12 @@ public class spawnPacks : MonoBehaviour {
 		if(healthPickUp == true && canSpawnHealth == false){
 			timerH += Time.deltaTime;
 		}
+		// makes it spanw 30 seconds after the previous pack has been picked up
 		if (timerH > 30) {
 			timerH = 0;
 			canSpawnHealth = true;
 		}
+		//spawn new healthpack & dissable new spawn
 		if (healthPickUp == true && canSpawnHealth == true) {
 			Instantiate (healthPrefab, new Vector3 (8, 0, 8), Quaternion.Euler (-90, 0, 0));
 			healthPickUp = false;
@@ -42,10 +44,12 @@ public class spawnPacks : MonoBehaviour {
 		if(energyPickUp == true && canSpawnEnergy == false){
 			timerE += Time.deltaTime;
 		}
+		// makes it spanw 30 seconds after the previous pack has been picked up
 		if (timerE > 30) {
 			timerE = 0;
 			canSpawnEnergy = true;
 		}
+		//spawn new energy pack & dissable new spawn
 		if (energyPickUp == true && canSpawnEnergy == true) {
 			Instantiate (energyPrefab, new Vector3 (4, 0, 8), Quaternion.identity);
 			energyPickUp = false;
